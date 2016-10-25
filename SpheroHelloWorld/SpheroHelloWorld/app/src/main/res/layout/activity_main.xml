@@ -10,8 +10,52 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.andrewdong.spherohelloworld.MainActivity">
 
-    <TextView
+    <Button
+        android:text="Down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="187dp"
+        android:id="@+id/button_down" />
+
+    <Button
+        android:text="Up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_down"
+        android:layout_alignRight="@+id/button_down"
+        android:layout_alignEnd="@+id/button_down"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/button_up" />
+
+    <Button
+        android:text="Right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_right"
+        android:layout_alignBaseline="@+id/button_down"
+        android:layout_alignBottom="@+id/button_down"
+        android:layout_toRightOf="@+id/button_down"
+        android:layout_toEndOf="@+id/button_down" />
+
+    <Button
+        android:text="Left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_left"
+        android:layout_alignBaseline="@+id/button_down"
+        android:layout_alignBottom="@+id/button_down"
+        android:layout_toLeftOf="@+id/button_down"
+        android:layout_toStartOf="@+id/button_down" />
+
+    <Button
+        android:text="Stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_right"
+        android:layout_toRightOf="@+id/button_left"
+        android:layout_toEndOf="@+id/button_left"
+        android:layout_marginTop="42dp"
+        android:id="@+id/button_stop" />
 </RelativeLayout>
