@@ -19,3 +19,6 @@ C:\Git\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\bin\Debug\
 C:\Git\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\bin\Debug\AForge.Imaging.Formats.xml
 C:\Git\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\bin\Debug\AForge.Math.xml
 C:\Git\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\obj\Debug\AForgeCameraTracking.csprojResolveAssemblyReference.cache
+C:\Git\CPSC584\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\bin\Debug\AForgeCameraTracking.exe.config
+C:\Git\CPSC584\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\obj\Debug\AForgeCameraTracking.exe
+C:\Git\CPSC584\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\obj\Debug\AForgeCameraTracking.pdb

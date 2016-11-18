@@ -196,6 +196,7 @@
             this.numericUpDownRed.Name = "numericUpDownRed";
             this.numericUpDownRed.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownRed.TabIndex = 11;
+            this.numericUpDownRed.ValueChanged += new System.EventHandler(this.numericUpDownRed_ValueChanged);
             // 
             // numericUpDownGreen
             // 

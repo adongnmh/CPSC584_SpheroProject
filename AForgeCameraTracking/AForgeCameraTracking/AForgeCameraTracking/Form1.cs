@@ -135,5 +135,11 @@ namespace AForgeCameraTracking
             blue = (int)trackBarBlue.Value;
             numericUpDownBlue.Value = blue;
         }
+
+        private void numericUpDownRed_ValueChanged(object sender, EventArgs e)
+        {
+            red = (int)numericUpDownRed.Value;
+            trackBarRed.Value = red;
+        }
     }
 }
