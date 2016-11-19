@@ -44,6 +44,7 @@
             this.numericUpDownRed = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownGreen = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownBlue = new System.Windows.Forms.NumericUpDown();
+            this.buttonEdgeDetect = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -209,6 +210,7 @@
             this.numericUpDownGreen.Name = "numericUpDownGreen";
             this.numericUpDownGreen.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownGreen.TabIndex = 12;
+            this.numericUpDownGreen.ValueChanged += new System.EventHandler(this.numericUpDownGreen_ValueChanged);
             // 
             // numericUpDownBlue
             // 
@@ -221,12 +223,24 @@
             this.numericUpDownBlue.Name = "numericUpDownBlue";
             this.numericUpDownBlue.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownBlue.TabIndex = 13;
+            this.numericUpDownBlue.ValueChanged += new System.EventHandler(this.numericUpDownBlue_ValueChanged);
+            // 
+            // buttonEdgeDetect
+            // 
+            this.buttonEdgeDetect.Location = new System.Drawing.Point(434, 12);
+            this.buttonEdgeDetect.Name = "buttonEdgeDetect";
+            this.buttonEdgeDetect.Size = new System.Drawing.Size(102, 23);
+            this.buttonEdgeDetect.TabIndex = 14;
+            this.buttonEdgeDetect.Text = "EdgeDetection";
+            this.buttonEdgeDetect.UseVisualStyleBackColor = true;
+            this.buttonEdgeDetect.Click += new System.EventHandler(this.buttonEdgeDetect_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1123, 721);
+            this.Controls.Add(this.buttonEdgeDetect);
             this.Controls.Add(this.numericUpDownBlue);
             this.Controls.Add(this.numericUpDownGreen);
             this.Controls.Add(this.numericUpDownRed);
@@ -277,6 +291,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDownRed;
         private System.Windows.Forms.NumericUpDown numericUpDownGreen;
         private System.Windows.Forms.NumericUpDown numericUpDownBlue;
+        private System.Windows.Forms.Button buttonEdgeDetect;
     }
 }
 
