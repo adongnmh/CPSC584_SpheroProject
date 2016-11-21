@@ -35,25 +35,25 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.buttonCapture = new System.Windows.Forms.Button();
             this.buttonTracking = new System.Windows.Forms.Button();
-            this.trackBarRed = new System.Windows.Forms.TrackBar();
-            this.trackBarGreen = new System.Windows.Forms.TrackBar();
-            this.trackBarBlue = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonEdgeDetect = new System.Windows.Forms.Button();
             this.numericUpDownRed = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownGreen = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownBlue = new System.Windows.Forms.NumericUpDown();
-            this.buttonEdgeDetect = new System.Windows.Forms.Button();
+            this.numericUpDownRedUpper = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownGreenUpper = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownBlueUpper = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarRed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarGreen)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarBlue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBlue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRedUpper)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGreenUpper)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBlueUpper)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonStart
@@ -132,37 +132,10 @@
             this.buttonTracking.UseVisualStyleBackColor = true;
             this.buttonTracking.Click += new System.EventHandler(this.buttonTracking_Click);
             // 
-            // trackBarRed
-            // 
-            this.trackBarRed.Location = new System.Drawing.Point(132, 509);
-            this.trackBarRed.Maximum = 255;
-            this.trackBarRed.Name = "trackBarRed";
-            this.trackBarRed.Size = new System.Drawing.Size(511, 45);
-            this.trackBarRed.TabIndex = 5;
-            this.trackBarRed.Scroll += new System.EventHandler(this.trackBarRed_Scroll);
-            // 
-            // trackBarGreen
-            // 
-            this.trackBarGreen.Location = new System.Drawing.Point(132, 571);
-            this.trackBarGreen.Maximum = 255;
-            this.trackBarGreen.Name = "trackBarGreen";
-            this.trackBarGreen.Size = new System.Drawing.Size(511, 45);
-            this.trackBarGreen.TabIndex = 6;
-            this.trackBarGreen.Scroll += new System.EventHandler(this.trackBarGreen_Scroll);
-            // 
-            // trackBarBlue
-            // 
-            this.trackBarBlue.Location = new System.Drawing.Point(132, 634);
-            this.trackBarBlue.Maximum = 255;
-            this.trackBarBlue.Name = "trackBarBlue";
-            this.trackBarBlue.Size = new System.Drawing.Size(511, 45);
-            this.trackBarBlue.TabIndex = 7;
-            this.trackBarBlue.Scroll += new System.EventHandler(this.trackBarBlue_Scroll);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(81, 521);
+            this.label1.Location = new System.Drawing.Point(42, 516);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 8;
@@ -171,7 +144,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(81, 582);
+            this.label2.Location = new System.Drawing.Point(42, 577);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 9;
@@ -180,50 +153,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(81, 634);
+            this.label3.Location = new System.Drawing.Point(42, 629);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 10;
             this.label3.Text = "Blue";
-            // 
-            // numericUpDownRed
-            // 
-            this.numericUpDownRed.Location = new System.Drawing.Point(672, 509);
-            this.numericUpDownRed.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numericUpDownRed.Name = "numericUpDownRed";
-            this.numericUpDownRed.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownRed.TabIndex = 11;
-            this.numericUpDownRed.ValueChanged += new System.EventHandler(this.numericUpDownRed_ValueChanged);
-            // 
-            // numericUpDownGreen
-            // 
-            this.numericUpDownGreen.Location = new System.Drawing.Point(672, 571);
-            this.numericUpDownGreen.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numericUpDownGreen.Name = "numericUpDownGreen";
-            this.numericUpDownGreen.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownGreen.TabIndex = 12;
-            this.numericUpDownGreen.ValueChanged += new System.EventHandler(this.numericUpDownGreen_ValueChanged);
-            // 
-            // numericUpDownBlue
-            // 
-            this.numericUpDownBlue.Location = new System.Drawing.Point(672, 634);
-            this.numericUpDownBlue.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numericUpDownBlue.Name = "numericUpDownBlue";
-            this.numericUpDownBlue.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownBlue.TabIndex = 13;
-            this.numericUpDownBlue.ValueChanged += new System.EventHandler(this.numericUpDownBlue_ValueChanged);
             // 
             // buttonEdgeDetect
             // 
@@ -235,21 +169,144 @@
             this.buttonEdgeDetect.UseVisualStyleBackColor = true;
             this.buttonEdgeDetect.Click += new System.EventHandler(this.buttonEdgeDetect_Click);
             // 
+            // numericUpDownRed
+            // 
+            this.numericUpDownRed.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownRed.Location = new System.Drawing.Point(94, 514);
+            this.numericUpDownRed.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDownRed.Name = "numericUpDownRed";
+            this.numericUpDownRed.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownRed.TabIndex = 15;
+            this.numericUpDownRed.ValueChanged += new System.EventHandler(this.numericUpDownRed_ValueChanged);
+            // 
+            // numericUpDownGreen
+            // 
+            this.numericUpDownGreen.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownGreen.Location = new System.Drawing.Point(94, 577);
+            this.numericUpDownGreen.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDownGreen.Name = "numericUpDownGreen";
+            this.numericUpDownGreen.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownGreen.TabIndex = 16;
+            this.numericUpDownGreen.ValueChanged += new System.EventHandler(this.numericUpDownGreen_ValueChanged);
+            // 
+            // numericUpDownBlue
+            // 
+            this.numericUpDownBlue.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownBlue.Location = new System.Drawing.Point(94, 629);
+            this.numericUpDownBlue.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDownBlue.Name = "numericUpDownBlue";
+            this.numericUpDownBlue.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownBlue.TabIndex = 17;
+            this.numericUpDownBlue.ValueChanged += new System.EventHandler(this.numericUpDownBlue_ValueChanged);
+            // 
+            // numericUpDownRedUpper
+            // 
+            this.numericUpDownRedUpper.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownRedUpper.Location = new System.Drawing.Point(255, 514);
+            this.numericUpDownRedUpper.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDownRedUpper.Name = "numericUpDownRedUpper";
+            this.numericUpDownRedUpper.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownRedUpper.TabIndex = 18;
+            this.numericUpDownRedUpper.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDownRedUpper.ValueChanged += new System.EventHandler(this.numericUpDownRedUpper_ValueChanged);
+            // 
+            // numericUpDownGreenUpper
+            // 
+            this.numericUpDownGreenUpper.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownGreenUpper.Location = new System.Drawing.Point(255, 577);
+            this.numericUpDownGreenUpper.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDownGreenUpper.Name = "numericUpDownGreenUpper";
+            this.numericUpDownGreenUpper.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownGreenUpper.TabIndex = 19;
+            this.numericUpDownGreenUpper.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDownGreenUpper.ValueChanged += new System.EventHandler(this.numericUpDownGreenUpper_ValueChanged);
+            // 
+            // numericUpDownBlueUpper
+            // 
+            this.numericUpDownBlueUpper.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownBlueUpper.Location = new System.Drawing.Point(255, 629);
+            this.numericUpDownBlueUpper.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDownBlueUpper.Name = "numericUpDownBlueUpper";
+            this.numericUpDownBlueUpper.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownBlueUpper.TabIndex = 20;
+            this.numericUpDownBlueUpper.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDownBlueUpper.ValueChanged += new System.EventHandler(this.numericUpDownBlueUpper_ValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1123, 721);
-            this.Controls.Add(this.buttonEdgeDetect);
+            this.Controls.Add(this.numericUpDownBlueUpper);
+            this.Controls.Add(this.numericUpDownGreenUpper);
+            this.Controls.Add(this.numericUpDownRedUpper);
             this.Controls.Add(this.numericUpDownBlue);
             this.Controls.Add(this.numericUpDownGreen);
             this.Controls.Add(this.numericUpDownRed);
+            this.Controls.Add(this.buttonEdgeDetect);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.trackBarBlue);
-            this.Controls.Add(this.trackBarGreen);
-            this.Controls.Add(this.trackBarRed);
             this.Controls.Add(this.buttonTracking);
             this.Controls.Add(this.buttonCapture);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -262,12 +319,12 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarRed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarGreen)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarBlue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGreen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBlue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRedUpper)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGreenUpper)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBlueUpper)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,16 +339,16 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button buttonCapture;
         private System.Windows.Forms.Button buttonTracking;
-        private System.Windows.Forms.TrackBar trackBarRed;
-        private System.Windows.Forms.TrackBar trackBarGreen;
-        private System.Windows.Forms.TrackBar trackBarBlue;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonEdgeDetect;
         private System.Windows.Forms.NumericUpDown numericUpDownRed;
         private System.Windows.Forms.NumericUpDown numericUpDownGreen;
         private System.Windows.Forms.NumericUpDown numericUpDownBlue;
-        private System.Windows.Forms.Button buttonEdgeDetect;
+        private System.Windows.Forms.NumericUpDown numericUpDownRedUpper;
+        private System.Windows.Forms.NumericUpDown numericUpDownGreenUpper;
+        private System.Windows.Forms.NumericUpDown numericUpDownBlueUpper;
     }
 }
 

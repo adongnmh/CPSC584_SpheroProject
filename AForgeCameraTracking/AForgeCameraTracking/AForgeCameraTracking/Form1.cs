@@ -34,6 +34,8 @@ namespace AForgeCameraTracking
         int green;
         int blue;
 
+        int redUpper = 255, greenUpper=255, blueUpper=255;
+
         private void Form1_Load(object sender, EventArgs e)
         {
             CaptureDevice = new FilterInfoCollection(FilterCategory.VideoInputDevice);
@@ -78,9 +80,9 @@ namespace AForgeCameraTracking
                 // Filter Range - You can specify the color that you want the webcam to recogonize only here. Adjust with the 
                 // sliders here. More can be found on the documentation on AForge.
                 ColorFiltering colorFilter = new ColorFiltering();
-                colorFilter.Red = new IntRange(red, 255);
-                colorFilter.Green = new IntRange(green, 88);
-                colorFilter.Blue = new IntRange(blue, 210);
+                colorFilter.Red = new IntRange(red, redUpper);
+                colorFilter.Green = new IntRange(green, greenUpper);
+                colorFilter.Blue = new IntRange(blue, blueUpper);
                 colorFilter.ApplyInPlace(video2);
 
                 // Blob counter counts and extracts stand alone objects in images using connected components labelling algortithm.
@@ -141,45 +143,39 @@ namespace AForgeCameraTracking
 
         }
 
-        private void trackBarRed_Scroll(object sender, EventArgs e)
+        private void buttonEdgeDetect_Click(object sender, EventArgs e)
         {
-            red = (int)trackBarRed.Value;
-            numericUpDownRed.Value = red;
-        }
-
-        private void trackBarGreen_Scroll(object sender, EventArgs e)
-        {
-            green = (int)trackBarGreen.Value;
-            numericUpDownGreen.Value = green;
-        }
-
-        private void trackBarBlue_Scroll(object sender, EventArgs e)
-        {
-            blue = (int)trackBarBlue.Value;
-            numericUpDownBlue.Value = blue;
+            trackingMode = 2;
         }
 
         private void numericUpDownRed_ValueChanged(object sender, EventArgs e)
         {
-            red = (int)numericUpDownRed.Value;
-            trackBarRed.Value = red;
+            red = (int) numericUpDownRed.Value;
         }
 
         private void numericUpDownGreen_ValueChanged(object sender, EventArgs e)
         {
             green = (int)numericUpDownGreen.Value;
-            trackBarGreen.Value = green;
+        }
+
+        private void numericUpDownGreenUpper_ValueChanged(object sender, EventArgs e)
+        {
+            greenUpper = (int)numericUpDownGreenUpper.Value;
+        }
+
+        private void numericUpDownBlueUpper_ValueChanged(object sender, EventArgs e)
+        {
+            blueUpper = (int)numericUpDownBlueUpper.Value;
         }
 
         private void numericUpDownBlue_ValueChanged(object sender, EventArgs e)
         {
             blue = (int)numericUpDownBlue.Value;
-            trackBarBlue.Value = blue;
         }
 
-        private void buttonEdgeDetect_Click(object sender, EventArgs e)
+        private void numericUpDownRedUpper_ValueChanged(object sender, EventArgs e)
         {
-            trackingMode = 2;
+            redUpper = (int)numericUpDownRedUpper.Value;
         }
     }
 }
