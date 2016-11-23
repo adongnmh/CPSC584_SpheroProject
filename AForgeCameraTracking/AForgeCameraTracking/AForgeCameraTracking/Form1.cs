@@ -12,7 +12,9 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 using AForge.Imaging.Filters;
 using AForge.Imaging;
-
+using System.Drawing.Imaging;
+using AForge.Math.Geometry;
+using System.Media;
 
 namespace AForgeCameraTracking
 {
@@ -110,11 +112,52 @@ namespace AForgeCameraTracking
                 }
                 pictureBox2.Image = video2;
             }
+
             else if(trackingMode == 2)
             {
-                DifferenceEdgeDetector filter = new DifferenceEdgeDetector();
-                filter.ApplyInPlace(video2);
+                ColorFiltering colorFilter = new ColorFiltering();
+                colorFilter.Red = new IntRange(100, 255);
+                colorFilter.Green = new IntRange(0, 75);
+                colorFilter.Blue = new IntRange(0, 75);
+                colorFilter.FillOutsideRange = true;
+                colorFilter.ApplyInPlace(video2);
+
+                BlobCounter blobCounter = new BlobCounter();
+
+                blobCounter.FilterBlobs = true;
+                blobCounter.MinHeight = 100;
+                blobCounter.MinWidth = 100;
+                blobCounter.ObjectsOrder = ObjectsOrder.Size;
+
+                blobCounter.ProcessImage(video2);
+                Blob[] blobs = blobCounter.GetObjectsInformation();
+
+                // step 3 - check objects' type and highlight
+                SimpleShapeChecker shapeChecker = new SimpleShapeChecker();
+
+                Graphics g = Graphics.FromImage(video2);
+                Pen yellowPen = new Pen(Color.Yellow, 2); // circles
+
+                for (int i = 0, n = blobs.Length; i < n; i++)
+                {
+                    List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blobs[i]);
+
+                    AForge.Point center;
+                    float radius;
+
+                    if (shapeChecker.IsCircle(edgePoints, out center, out radius))
+                    {
+                        g.DrawEllipse(yellowPen,
+                            (int)(center.X - radius),
+                            (int)(center.Y - radius),
+                            (int)(radius * 2),
+                            (int)(radius * 2));
+                    }
+                }
                 pictureBox2.Image = video2;
+
+
+
             }
             pictureBox1.Image = video;
 

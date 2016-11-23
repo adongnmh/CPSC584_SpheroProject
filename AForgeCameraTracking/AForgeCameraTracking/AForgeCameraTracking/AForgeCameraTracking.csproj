@@ -42,6 +42,10 @@
     <Reference Include="AForge.Imaging.Formats">
       <HintPath>D:\Documents\UNIVERSITY\FALL2016\CPSC584\Aforge\Release\AForge.Imaging.Formats.dll</HintPath>
     </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Documents\UNIVERSITY\FALL2016\CPSC584\Aforge\Release\AForge.Math.dll</HintPath>
+    </Reference>
     <Reference Include="AForge.Video">
       <HintPath>D:\Documents\UNIVERSITY\FALL2016\CPSC584\Aforge\Release\AForge.Video.dll</HintPath>
     </Reference>
