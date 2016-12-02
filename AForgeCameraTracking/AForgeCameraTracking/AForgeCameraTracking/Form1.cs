@@ -115,18 +115,24 @@ namespace AForgeCameraTracking
 
             else if(trackingMode == 2)
             {
-                ColorFiltering colorFilter = new ColorFiltering();
-                colorFilter.Red = new IntRange(100, 255);
-                colorFilter.Green = new IntRange(0, 75);
-                colorFilter.Blue = new IntRange(0, 75);
-                colorFilter.FillOutsideRange = true;
-                colorFilter.ApplyInPlace(video2);
+                EuclideanColorFiltering filter = new EuclideanColorFiltering();
+                // set center colol and radius
+                filter.CenterColor = new RGB(255, 255, 255);
+                filter.Radius = 100;
+                filter.ApplyInPlace(video2);
+
+                /*ColorFiltering colorFilter = new ColorFiltering();
+                colorFilter.Red = new IntRange(0, 0);
+                colorFilter.Green = new IntRange(0, 0);
+                colorFilter.Blue = new IntRange(0, 0);
+                colorFilter.FillOutsideRange = false;
+                colorFilter.ApplyInPlace(video2);*/
 
                 BlobCounter blobCounter = new BlobCounter();
 
                 blobCounter.FilterBlobs = true;
-                blobCounter.MinHeight = 100;
-                blobCounter.MinWidth = 100;
+                blobCounter.MinHeight = 50;
+                blobCounter.MinWidth = 50;
                 blobCounter.ObjectsOrder = ObjectsOrder.Size;
 
                 blobCounter.ProcessImage(video2);
@@ -136,7 +142,7 @@ namespace AForgeCameraTracking
                 SimpleShapeChecker shapeChecker = new SimpleShapeChecker();
 
                 Graphics g = Graphics.FromImage(video2);
-                Pen yellowPen = new Pen(Color.Yellow, 2); // circles
+                Pen yellowPen = new Pen(Color.Yellow, 5); // circles
 
                 for (int i = 0, n = blobs.Length; i < n; i++)
                 {
@@ -147,6 +153,9 @@ namespace AForgeCameraTracking
 
                     if (shapeChecker.IsCircle(edgePoints, out center, out radius))
                     {
+                        Console.WriteLine(blobs[i].CenterOfGravity);
+                        //Console.WriteLine(center.X);
+                        //Console.WriteLine(center.Y);
                         g.DrawEllipse(yellowPen,
                             (int)(center.X - radius),
                             (int)(center.Y - radius),
