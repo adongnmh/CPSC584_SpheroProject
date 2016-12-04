@@ -150,10 +150,11 @@ namespace AForgeCameraTracking
 
                     AForge.Point center;
                     float radius;
+                    
 
                     if (shapeChecker.IsCircle(edgePoints, out center, out radius))
                     {
-                        Console.WriteLine(blobs[i].CenterOfGravity);
+                        
                         //Console.WriteLine(center.X);
                         //Console.WriteLine(center.Y);
                         g.DrawEllipse(yellowPen,
