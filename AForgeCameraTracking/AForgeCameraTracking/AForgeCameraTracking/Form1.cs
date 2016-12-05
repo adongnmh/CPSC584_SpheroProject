@@ -118,7 +118,7 @@ namespace AForgeCameraTracking
                 EuclideanColorFiltering filter = new EuclideanColorFiltering();
                 // set center colol and radius
                 filter.CenterColor = new RGB(255, 255, 255);
-                filter.Radius = 100;
+                filter.Radius = 150;
                 filter.ApplyInPlace(video2);
 
                 /*ColorFiltering colorFilter = new ColorFiltering();
@@ -131,8 +131,8 @@ namespace AForgeCameraTracking
                 BlobCounter blobCounter = new BlobCounter();
 
                 blobCounter.FilterBlobs = true;
-                blobCounter.MinHeight = 50;
-                blobCounter.MinWidth = 50;
+                blobCounter.MinHeight = 5;
+                blobCounter.MinWidth = 5;
                 blobCounter.ObjectsOrder = ObjectsOrder.Size;
 
                 blobCounter.ProcessImage(video2);

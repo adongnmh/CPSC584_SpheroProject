@@ -32,4 +32,24 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="94dp" />
 
+    <Button
+        android:text="SET TAIL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRotate"
+        android:layout_alignStart="@+id/btnRotate"
+        android:layout_marginTop="16dp"
+        android:id="@+id/btnSet"
+        android:layout_alignEnd="@+id/btnRotate" />
+
+    <Button
+        android:text="STOP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/buttonStop"
+        android:layout_below="@+id/btnSet"
+        android:layout_alignStart="@+id/btnSet"
+        android:layout_alignEnd="@+id/btnSet" />
+
 </RelativeLayout>

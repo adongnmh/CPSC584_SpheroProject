@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
 
     private Button mBtn0;
     private Button btnRotate;
+    private Button btnSetTail;
+    private Button btnStop;
     private int tail = 0;
 
     @Override
@@ -51,18 +53,18 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DualStackDiscoveryAgent.getInstance().addRobotStateListener( this );
+        DualStackDiscoveryAgent.getInstance().addRobotStateListener(this);
 
 
-        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ) {
-            int hasLocationPermission = checkSelfPermission( Manifest.permission.ACCESS_COARSE_LOCATION );
-            if( hasLocationPermission != PackageManager.PERMISSION_GRANTED ) {
-                Log.e( "Sphero", "Location permission has not already been granted" );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int hasLocationPermission = checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION);
+            if (hasLocationPermission != PackageManager.PERMISSION_GRANTED) {
+                Log.e("Sphero", "Location permission has not already been granted");
                 List<String> permissions = new ArrayList<String>();
-                permissions.add( Manifest.permission.ACCESS_COARSE_LOCATION);
-                requestPermissions(permissions.toArray(new String[permissions.size()] ), REQUEST_CODE_LOCATION_PERMISSION );
+                permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+                requestPermissions(permissions.toArray(new String[permissions.size()]), REQUEST_CODE_LOCATION_PERMISSION);
             } else {
-                Log.d( "Sphero", "Location permission already granted" );
+                Log.d("Sphero", "Location permission already granted");
             }
         }
 
@@ -71,24 +73,30 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
 
 
     private void initViews() {
-        mBtn0 = (Button) findViewById( R.id.btn_0 );
-        mBtn0.setOnClickListener( this );
+        mBtn0 = (Button) findViewById(R.id.btn_0);
+        mBtn0.setOnClickListener(this);
 
-        btnRotate =(Button) findViewById(R.id.btnRotate);
+        btnRotate = (Button) findViewById(R.id.btnRotate);
         btnRotate.setOnClickListener(this);
+
+        btnSetTail = (Button) findViewById(R.id.btnSet);
+        btnSetTail.setOnClickListener(this);
+
+        btnStop = (Button) findViewById(R.id.buttonStop);
+        btnStop.setOnClickListener(this);
     }
 
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch ( requestCode ) {
+        switch (requestCode) {
             case REQUEST_CODE_LOCATION_PERMISSION: {
-                for( int i = 0; i < permissions.length; i++ ) {
-                    if( grantResults[i] == PackageManager.PERMISSION_GRANTED ) {
+                for (int i = 0; i < permissions.length; i++) {
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                         startDiscovery();
-                        Log.d( "Permissions", "Permission Granted: " + permissions[i] );
-                    } else if( grantResults[i] == PackageManager.PERMISSION_DENIED ) {
-                        Log.d( "Permissions", "Permission Denied: " + permissions[i] );
+                        Log.d("Permissions", "Permission Granted: " + permissions[i]);
+                    } else if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                        Log.d("Permissions", "Permission Denied: " + permissions[i]);
                     }
                 }
             }
@@ -103,17 +111,17 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
     protected void onStart() {
         super.onStart();
 
-        if( Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                || checkSelfPermission( Manifest.permission.ACCESS_COARSE_LOCATION ) == PackageManager.PERMISSION_GRANTED ) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M
+                || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             startDiscovery();
         }
     }
 
     private void startDiscovery() {
         //If the DiscoveryAgent is not already looking for robots, start discovery.
-        if( !DualStackDiscoveryAgent.getInstance().isDiscovering() ) {
+        if (!DualStackDiscoveryAgent.getInstance().isDiscovering()) {
             try {
-                DualStackDiscoveryAgent.getInstance().startDiscovery( this );
+                DualStackDiscoveryAgent.getInstance().startDiscovery(this);
             } catch (DiscoveryException e) {
                 Log.e("Sphero", "DiscoveryException: " + e.getMessage());
             }
@@ -123,12 +131,12 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
     @Override
     protected void onStop() {
         //If the DiscoveryAgent is in discovery mode, stop it.
-        if( DualStackDiscoveryAgent.getInstance().isDiscovering() ) {
+        if (DualStackDiscoveryAgent.getInstance().isDiscovering()) {
             DualStackDiscoveryAgent.getInstance().stopDiscovery();
         }
 
         //If a robot is connected to the device, disconnect it
-        if( mRobot != null ) {
+        if (mRobot != null) {
             mRobot.disconnect();
             mRobot = null;
         }
@@ -139,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        DualStackDiscoveryAgent.getInstance().addRobotStateListener( null );
+        DualStackDiscoveryAgent.getInstance().addRobotStateListener(null);
     }
 
     @Override
@@ -149,25 +157,30 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
 
                 //If robot uses Bluetooth LE, Developer Mode can be turned on.
                 //This turns off DOS protection. This generally isn't required.
-                if( robot instanceof RobotLE) {
-                    ( (RobotLE) robot ).setDeveloperMode( true );
+                if (robot instanceof RobotLE) {
+                    ((RobotLE) robot).setDeveloperMode(true);
                 }
 
                 //Save the robot as a ConvenienceRobot for additional utility methods
                 mRobot = new ConvenienceRobot(robot);
                 //Start blinking the robot's LED
-                blink( false );
+                initialize();
                 break;
             }
         }
     }
 
-    //Turn the robot LED on or off every two seconds
-    private void blink( final boolean lit ) {
-        mRobot.setLed(0,1,0);
+    //Initializing the Sphero ro make sure it is connected
+    private void initialize()
+    {
+        mRobot.setLed(1,0,0);
         mRobot.setBackLedBrightness(1);
-        mRobot.drive(180,0);
+    }
 
+    private void stopMacro()
+    {
+        mRobot.sendCommand(new AbortMacroCommand());
+        initialize();
     }
 
     @Override
@@ -184,7 +197,11 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
          */
         switch( v.getId() ) {
             case R.id.btn_0: {
+                // The Set of macros that will be played when we hit the play button. Spheros will follow the
+                // set of macros until the very end.
                 MacroObject macro = new MacroObject();
+
+                // Blink Movement
                 macro.addCommand(new LoopStart(9));
                 macro.addCommand(new RGB(156,255,0,500));
                 macro.addCommand(new Delay(100));
@@ -193,8 +210,9 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
                 macro.addCommand(new LoopEnd());
 
 
-
+                // Move Right
                 //Set the robot LED to blue
+                // RGB (Red,Green,Blue,DELAY)
                 macro.addCommand( new RGB( 0, 0, 255, 255 ) );
                 //Move the robot to the right
                 macro.addCommand( new Roll( 0.5f, 90, 0 ) );
@@ -203,12 +221,13 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
                 //Stop
                 macro.addCommand( new Roll( 0.0f, 90, 255 ) );
 
+                // Spin Movement
                 macro.addCommand( new LoopStart( 5));
-                macro.addCommand( new RotateOverTime( 360, 500));
+                macro.addCommand( new RotateOverTime( 720, 500));
                 macro.addCommand( new Delay( ( 500  ) ) );
                 macro.addCommand( new LoopEnd() );
 
-
+                //Move Left
                 //Set the robot LED to red
                 macro.addCommand( new RGB( 255, 0, 0, 255 ) );
                 //Move the robot to the left
@@ -228,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
                 macro.addCommand( new Roll( 0.0f, 270, 255 ) );
 
                 macro.addCommand( new LoopStart( 5));
-                macro.addCommand( new RotateOverTime( 360, 500));
+                macro.addCommand( new RotateOverTime( 720, 500));
                 macro.addCommand( new Delay( ( 500  ) ) );
                 macro.addCommand( new LoopEnd() );
 
@@ -241,22 +260,57 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
                 //Stop
                 macro.addCommand( new Roll( 0.0f, 90, 255 ) );
 
+                //Move Forward
+                //Set the robot LED to green
+                macro.addCommand( new RGB( 0, 255, 0, 255 ) );
+                //Move the robot forward
+                macro.addCommand( new Roll( 0.5f, 0, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 0, 255 ) );
+
+                // Move backward
+                //Set the robot LED to yellow
+                macro.addCommand( new RGB( 255, 255, 0, 255 ) );
+                //Move the robot backwards
+                macro.addCommand( new Roll( 0.5f, 180, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay(500 ) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 180, 255 ) );
+
+                // Shake
+                macro.addCommand( new LoopStart(4));
+                macro.addCommand( new RotateOverTime( 1080, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
 
 
-
-
+                
                 //Send the macro to the robot and play
                 macro.setMode(MacroObject.MacroObjectMode.Normal);
                 macro.setRobot(mRobot.getRobot());
                 macro.playMacro();
-
-
                 break;
             }
 
             case R.id.btnRotate: {
-                tail = tail + 90;
+                tail = tail + 10;
                 mRobot.drive(tail,0);
+
+                break;
+            }
+
+            case R.id.btnSet: {
+                mRobot.setZeroHeading();
+                break;
+            }
+
+            case R.id.buttonStop:
+            {
+                stopMacro();
+                break;
             }
 
         }
