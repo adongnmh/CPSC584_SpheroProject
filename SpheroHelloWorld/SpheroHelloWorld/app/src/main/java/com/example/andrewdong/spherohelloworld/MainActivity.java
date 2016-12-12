@@ -297,7 +297,8 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
 
             case R.id.btnRotate: {
                 tail = tail + 10;
-                mRobot.drive(tail,0);
+                //mRobot.drive(tail,0);
+                mRobot.rotate((float) tail);
 
                 break;
             }

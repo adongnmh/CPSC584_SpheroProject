@@ -52,6 +52,9 @@
     <Reference Include="AForge.Video.DirectShow">
       <HintPath>D:\Documents\UNIVERSITY\FALL2016\CPSC584\Aforge\Release\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
+    <Reference Include="AForge.Vision">
+      <HintPath>D:\Documents\UNIVERSITY\FALL2016\CPSC584\Aforge\Release\AForge.Vision.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

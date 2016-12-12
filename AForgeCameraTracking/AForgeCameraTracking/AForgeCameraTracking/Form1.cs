@@ -15,6 +15,7 @@ using AForge.Imaging;
 using System.Drawing.Imaging;
 using AForge.Math.Geometry;
 using System.Media;
+using AForge.Vision.Motion;
 
 namespace AForgeCameraTracking
 {
@@ -30,13 +31,18 @@ namespace AForgeCameraTracking
 
         // Flag to see if tracking is on or off.
         private int trackingMode;
-        Bitmap video;
+        private Bitmap video;
+        private int green, red, blue;
+        private int redUpper = 255, greenUpper=255, blueUpper=255;
 
-        int red;
-        int green;
-        int blue;
+        // create motion detector
+        private MotionDetector detector = new MotionDetector(
+            new SimpleBackgroundModelingDetector(),
+            new MotionAreaHighlighting());
 
-        int redUpper = 255, greenUpper=255, blueUpper=255;
+        private List<float> motionHistory = new List<float>();
+
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -76,8 +82,10 @@ namespace AForgeCameraTracking
 
             /**
              * If the trackingMode == 1 then it means we are in tracking mode.
+             * NOTE: This is old code! We are currently not using this at all. This is just here for reference!
              * **/
-            if (trackingMode == 1)
+
+            /*if (trackingMode == 1)
             {
                 // Filter Range - You can specify the color that you want the webcam to recogonize only here. Adjust with the 
                 // sliders here. More can be found on the documentation on AForge.
@@ -111,28 +119,31 @@ namespace AForgeCameraTracking
                     graphic.Dispose();
                 }
                 pictureBox2.Image = video2;
-            }
+            }*/
 
-            else if(trackingMode == 2)
+            if(trackingMode == 2)
             {
+
                 EuclideanColorFiltering filter = new EuclideanColorFiltering();
                 // set center colol and radius
                 filter.CenterColor = new RGB(255, 255, 255);
-                filter.Radius = 150;
+                filter.Radius = 125;
                 filter.ApplyInPlace(video2);
 
-                /*ColorFiltering colorFilter = new ColorFiltering();
-                colorFilter.Red = new IntRange(0, 0);
-                colorFilter.Green = new IntRange(0, 0);
-                colorFilter.Blue = new IntRange(0, 0);
-                colorFilter.FillOutsideRange = false;
-                colorFilter.ApplyInPlace(video2);*/
+
+
+                //ColorFiltering colorFilter = new ColorFiltering();
+                //colorFilter.Red = new IntRange(0, 0);
+                //colorFilter.Green = new IntRange(0, 0);
+                //colorFilter.Blue = new IntRange(0, 0);
+                //colorFilter.FillOutsideRange = false;
+                //colorFilter.ApplyInPlace(video2);
 
                 BlobCounter blobCounter = new BlobCounter();
 
                 blobCounter.FilterBlobs = true;
-                blobCounter.MinHeight = 5;
-                blobCounter.MinWidth = 5;
+                blobCounter.MinHeight = 15;
+                blobCounter.MinWidth = 15;
                 blobCounter.ObjectsOrder = ObjectsOrder.Size;
 
                 blobCounter.ProcessImage(video2);
@@ -169,8 +180,62 @@ namespace AForgeCameraTracking
 
 
             }
+
+            else if(trackingMode == 3)
+            {
+
+
+                // Setting the detection algorithm to SimpleBAckgroundModelling
+                // SetMotionDetectionAlgorithm(new SimpleBackgroundModelingDetector(true, true));
+                //
+                // SetMotionProcessingAlgorithm(new MotionBorderHighlighting());
+
+                Graphics g = Graphics.FromImage(video2);
+
+
+                //float value = detector.ProcessFrame(video2);
+                //String valueString = value.ToString();
+                detector.ProcessFrame(video2);
+                detector.MotionDetectionAlgorithm = new SimpleBackgroundModelingDetector(true, true);
+                detector.MotionProcessingAlgorithm = new MotionBorderHighlighting();
+
+                if (detector.ProcessFrame(video2) > 0.01)
+                {
+                    Console.WriteLine("WORKS!?");
+                }
+                pictureBox2.Image = video2;
+            }
+
             pictureBox1.Image = video;
 
+        }
+
+        // Set new motion detection algorithm
+        private void SetMotionDetectionAlgorithm(IMotionDetector detectionAlgorithm)
+        {
+            lock (this)
+            {
+                detector.MotionDetectionAlgorithm = detectionAlgorithm;
+
+                if (detectionAlgorithm is TwoFramesDifferenceDetector)
+                {
+                    if (
+                        (detector.MotionProcessingAlgorithm is MotionBorderHighlighting) ||
+                        (detector.MotionProcessingAlgorithm is BlobCountingObjectsProcessing))
+                    {
+                        SetMotionProcessingAlgorithm(new MotionAreaHighlighting());
+                    }
+                }
+            }
+        }
+
+        // Set new motion processing algorithm
+        private void SetMotionProcessingAlgorithm(IMotionProcessing processingAlgorithm)
+        {
+            lock (this)
+            {
+                detector.MotionProcessingAlgorithm = processingAlgorithm;
+            }
         }
 
         /**
@@ -184,11 +249,10 @@ namespace AForgeCameraTracking
             }
         }
 
-        private void buttonCapture_Click(object sender, EventArgs e)
+        private void btnMotion_Click(object sender, EventArgs e)
         {
-            pictureBox2.Image = (Bitmap)pictureBox1.Image.Clone();
+            trackingMode = 3;
         }
-
 
         private void buttonTracking_Click(object sender, EventArgs e)
         {
@@ -201,34 +265,5 @@ namespace AForgeCameraTracking
             trackingMode = 2;
         }
 
-        private void numericUpDownRed_ValueChanged(object sender, EventArgs e)
-        {
-            red = (int) numericUpDownRed.Value;
-        }
-
-        private void numericUpDownGreen_ValueChanged(object sender, EventArgs e)
-        {
-            green = (int)numericUpDownGreen.Value;
-        }
-
-        private void numericUpDownGreenUpper_ValueChanged(object sender, EventArgs e)
-        {
-            greenUpper = (int)numericUpDownGreenUpper.Value;
-        }
-
-        private void numericUpDownBlueUpper_ValueChanged(object sender, EventArgs e)
-        {
-            blueUpper = (int)numericUpDownBlueUpper.Value;
-        }
-
-        private void numericUpDownBlue_ValueChanged(object sender, EventArgs e)
-        {
-            blue = (int)numericUpDownBlue.Value;
-        }
-
-        private void numericUpDownRedUpper_ValueChanged(object sender, EventArgs e)
-        {
-            redUpper = (int)numericUpDownRedUpper.Value;
-        }
     }
 }
