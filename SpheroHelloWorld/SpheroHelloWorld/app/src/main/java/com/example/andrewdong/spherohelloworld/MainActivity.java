@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
     private Button btnUp;
     private Button btnDown;
     private Button btnPlay2;
+    private Button btnSphero1_3;
     private Button btnSphero2_1;
     private Button btnSphero2_2;
     private Button btnChorus;
@@ -114,6 +115,9 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
 
         btnPlay2 = (Button) findViewById(R.id.buttonPlay2);
         btnPlay2.setOnClickListener(this);
+
+        btnSphero1_3 = (Button) findViewById(R.id.buttonSphero1_3);
+        btnSphero1_3.setOnClickListener(this);
 
         btnSphero2_1 = (Button) findViewById(R.id.buttonSphero2_1);
         btnSphero2_1.setOnClickListener(this);
@@ -403,6 +407,66 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
                 break;
             }
 
+            case R.id.buttonSphero1_3:{
+                // The Set of macros that will be played when we hit the play button. Spheros will follow the
+                // set of macros until the very end.
+                MacroObject macro = new MacroObject();
+
+                // Move Right
+                //Set the robot LED to blue
+                // RGB (Red,Green,Blue,DELAY)
+                macro.addCommand(new LoopStart(4));
+                //macro.addCommand( new RGB( 0, 0, 255, 255 ) );
+                //Move the robot to the right
+                macro.addCommand( new Roll( 0.3f, 90, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 90, 255 ) );
+
+                macro.addCommand( new RotateOverTime( 360, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+
+                //Move Left
+                //Move the robot to the left
+                macro.addCommand( new Roll( 0.3f, 270, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500 ) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                macro.addCommand(new LoopEnd());
+
+                //another spin ccw
+                macro.addCommand( new LoopStart( 5));
+                macro.addCommand( new RotateOverTime( 360, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+
+                //victors part
+                macro.addCommand( new LoopStart( 30));
+                macro.addCommand( new RotateOverTime( 360, 800));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                //Set the robot to roll left
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                //you set my heart on fire
+                macro.addCommand(new Roll( 1.5f, 0, 0 ));
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 0, 255 ) );
+                macro.addCommand( new Delay( ( 500  ) ) );
+
+
+
+                //Send the macro to the robot and play
+                macro.setMode(MacroObject.MacroObjectMode.Normal);
+                macro.setRobot(mRobot.getRobot());
+                macro.playMacro();
+
+                break;
+            }
+
             case R.id.buttonSphero2_1:{
                 // The Set of macros that will be played when we hit the play button. Spheros will follow the
                 // set of macros until the very end.
@@ -456,10 +520,58 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
                 // set of macros until the very end.
                 MacroObject macro = new MacroObject();
 
+                // Move Right
+                //Set the robot LED to blue
+                // RGB (Red,Green,Blue,DELAY)
+                macro.addCommand(new LoopStart(4));
+                //macro.addCommand( new RGB( 0, 0, 255, 255 ) );
+                //Move the robot to the right
+                macro.addCommand( new Roll( 0.3f, 90, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 90, 255 ) );
+
+                macro.addCommand( new RotateOverTime( 360, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+
+                //Move Left
+                //Move the robot to the left
+                macro.addCommand( new Roll( 0.3f, 270, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500 ) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                macro.addCommand(new LoopEnd());
+
+                //another spin ccw
+                macro.addCommand( new LoopStart( 5));
+                macro.addCommand( new RotateOverTime( 360, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+
+                //victors part
+                macro.addCommand( new LoopStart( 30));
+                macro.addCommand( new RotateOverTime( 360, 800));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                //Set the robot to roll left
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                //you set my heart on fire
+                macro.addCommand(new Roll( 1.5f, 0, 0 ));
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 0, 255 ) );
+                macro.addCommand( new Delay( ( 500  ) ) );
+
+
+
                 //Send the macro to the robot and play
                 macro.setMode(MacroObject.MacroObjectMode.Normal);
                 macro.setRobot(mRobot.getRobot());
                 macro.playMacro();
+
                 break;
             }
 

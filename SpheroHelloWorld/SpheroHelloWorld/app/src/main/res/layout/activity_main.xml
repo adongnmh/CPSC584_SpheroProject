@@ -126,29 +126,38 @@
         android:id="@+id/buttonEnding" />
 
     <Button
-        android:text="Chorus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonChorus"
-        android:layout_marginTop="9dp"
-        android:layout_below="@+id/buttonPlay2"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="CHORUS2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonChorus"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="9dp"
-        android:id="@+id/buttonChorus2" />
-
-    <Button
         android:text="END2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/buttonSphero2_2"
         android:layout_alignStart="@+id/buttonEnding"
         android:id="@+id/buttonEnding2" />
+
+    <Button
+        android:text="Chorus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonChorus"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/buttonEnding2"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="CHORUS2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:id="@+id/buttonChorus2"
+        android:layout_below="@+id/buttonChorus"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="SPHERO1_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSphero1_3"
+        android:layout_alignBaseline="@+id/buttonChorus"
+        android:layout_alignBottom="@+id/buttonChorus"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
