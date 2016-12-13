@@ -14,27 +14,10 @@
         android:id="@+id/btn_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play"
+        android:text="Sphero1_1"
         android:onClick="onClick (MainActivity)"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Rotate Tail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnRotate"
-        android:onClick="onClick (MainActivity)"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="SET TAIL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnSet"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
 
     <Button
         android:text="LEFT"
@@ -56,7 +39,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="PLAY2"
+        android:text="SPHERO1_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonPlay2"
@@ -81,20 +64,91 @@
         android:layout_alignStart="@+id/buttonUp" />
 
     <Button
-        android:text="RIGHT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonRight"
-        android:layout_alignBaseline="@+id/buttonStopMove"
-        android:layout_alignBottom="@+id/buttonStopMove"
-        android:layout_toEndOf="@+id/btnRotate" />
-
-    <Button
         android:text="STOP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonStop"
         android:layout_above="@+id/buttonUp"
         android:layout_alignStart="@+id/buttonUp" />
+
+    <Button
+        android:text="RIGHT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonRight"
+        android:layout_alignBaseline="@+id/buttonStopMove"
+        android:layout_alignBottom="@+id/buttonStopMove"
+        android:layout_alignStart="@+id/btnSet" />
+
+    <Button
+        android:text="Rotate "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRotate"
+        android:onClick="onClick (MainActivity)"
+        android:layout_alignBaseline="@+id/buttonStop"
+        android:layout_alignBottom="@+id/buttonStop"
+        android:layout_alignEnd="@+id/buttonPlay2" />
+
+    <Button
+        android:text="SET TAIL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSet"
+        android:layout_alignBaseline="@+id/buttonStop"
+        android:layout_alignBottom="@+id/buttonStop"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="9dp" />
+
+    <Button
+        android:text="SPHERO2_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSphero2_1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="SPHERO2_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSphero2_2"
+        android:layout_alignBaseline="@+id/buttonPlay2"
+        android:layout_alignBottom="@+id/buttonPlay2"
+        android:layout_alignStart="@+id/buttonSphero2_1" />
+
+    <Button
+        android:text="END"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/buttonEnding" />
+
+    <Button
+        android:text="Chorus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonChorus"
+        android:layout_marginTop="9dp"
+        android:layout_below="@+id/buttonPlay2"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="CHORUS2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonChorus"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="9dp"
+        android:id="@+id/buttonChorus2" />
+
+    <Button
+        android:text="END2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonSphero2_2"
+        android:layout_alignStart="@+id/buttonEnding"
+        android:id="@+id/buttonEnding2" />
 
 </RelativeLayout>

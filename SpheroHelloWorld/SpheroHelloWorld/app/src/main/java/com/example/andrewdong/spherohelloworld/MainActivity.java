@@ -52,7 +52,12 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
     private Button btnUp;
     private Button btnDown;
     private Button btnPlay2;
-    private Button btnPlay3;
+    private Button btnSphero2_1;
+    private Button btnSphero2_2;
+    private Button btnChorus;
+    private Button btnChorus2;
+    private Button btnEnding;
+    private Button btnEnding2;
     private int tail = 0;
 
     @Override
@@ -109,6 +114,24 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
 
         btnPlay2 = (Button) findViewById(R.id.buttonPlay2);
         btnPlay2.setOnClickListener(this);
+
+        btnSphero2_1 = (Button) findViewById(R.id.buttonSphero2_1);
+        btnSphero2_1.setOnClickListener(this);
+
+        btnSphero2_2 = (Button) findViewById(R.id.buttonSphero2_2);
+        btnSphero2_2.setOnClickListener(this);
+
+        btnChorus = (Button) findViewById(R.id.buttonChorus);
+        btnChorus.setOnClickListener(this);
+
+        btnChorus2 = (Button) findViewById(R.id.buttonChorus2);
+        btnChorus2.setOnClickListener(this);
+
+        btnEnding = (Button) findViewById(R.id.buttonEnding);
+        btnEnding.setOnClickListener(this);
+
+        btnEnding2 = (Button) findViewById(R.id.buttonEnding2);
+        btnEnding2.setOnClickListener(this);
 
     }
 
@@ -294,6 +317,7 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
                 // set of macros until the very end.
                 MacroObject macro = new MacroObject();
 
+                //split the parts
                 //another spin ccw
                 macro.addCommand( new LoopStart( 3));
                 macro.addCommand( new RotateOverTime( 720, 500));
@@ -370,6 +394,294 @@ public class MainActivity extends AppCompatActivity implements RobotChangedState
                 macro.addCommand( new Delay((500) ) );
                 //Stop
                 macro.addCommand( new Roll( 0.0f, 90, 255 ) );
+                macro.addCommand( new Delay( ( 500 ) ) );
+
+                //Send the macro to the robot and play
+                macro.setMode(MacroObject.MacroObjectMode.Normal);
+                macro.setRobot(mRobot.getRobot());
+                macro.playMacro();
+                break;
+            }
+
+            case R.id.buttonSphero2_1:{
+                // The Set of macros that will be played when we hit the play button. Spheros will follow the
+                // set of macros until the very end.
+                MacroObject macro = new MacroObject();
+
+                //victors part
+                macro.addCommand( new LoopStart(3));
+                //Move the robot to the left
+                macro.addCommand( new Roll( 0.8f, 270, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500 ) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                macro.addCommand( new Delay( ( 500 ) ) );
+                //Move the robot to the right
+                macro.addCommand( new Roll( 1.0f, 90, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 90, 255 ) );
+                macro.addCommand( new LoopEnd());
+                //another spin ccw
+                macro.addCommand( new LoopStart( 14));
+                macro.addCommand( new RotateOverTime( 360, 800));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+
+                //you set my heart on fire
+                macro.addCommand(new Roll( 1.5f, 180, 0 ));
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 0, 255 ) );
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand(new Roll( 1.5f, 0, 0 ));
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 0, 255 ) );
+                macro.addCommand( new Delay( ( 500  ) ) );
+
+                //Send the macro to the robot and play
+                macro.setMode(MacroObject.MacroObjectMode.Normal);
+                macro.setRobot(mRobot.getRobot());
+                macro.playMacro();
+                break;
+            }
+
+            case R.id.buttonSphero2_2:{
+                // The Set of macros that will be played when we hit the play button. Spheros will follow the
+                // set of macros until the very end.
+                MacroObject macro = new MacroObject();
+
+                //Send the macro to the robot and play
+                macro.setMode(MacroObject.MacroObjectMode.Normal);
+                macro.setRobot(mRobot.getRobot());
+                macro.playMacro();
+                break;
+            }
+
+            case R.id.buttonChorus:{
+                // The Set of macros that will be played when we hit the play button. Spheros will follow the
+                // set of macros until the very end.
+                MacroObject macro = new MacroObject();
+
+
+                //Chorus PART 1:
+                //another spin ccw
+                macro.addCommand( new LoopStart( 3));
+                macro.addCommand( new RotateOverTime( 720, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+
+                macro.addCommand( new LoopStart( 12));
+                macro.addCommand( new RotateOverTime( 540, 800));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                //Set the robot to roll left
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+
+                macro.addCommand( new LoopStart( 12 ));
+                macro.addCommand( new RotateOverTime( 720, 800));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                //Set the robot to roll left
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+
+                //yes we were born to make history
+                // Shake
+                macro.addCommand( new LoopStart(10));
+                macro.addCommand( new RotateOverTime( 1080, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                macro.addCommand(new Roll( 1.5f, 0, 0 ));
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 0, 255 ) );
+                macro.addCommand( new Delay( ( 500  ) ) );
+
+
+
+                //Send the macro to the robot and play
+                macro.setMode(MacroObject.MacroObjectMode.Normal);
+                macro.setRobot(mRobot.getRobot());
+                macro.playMacro();
+                break;
+            }
+
+            case R.id.buttonChorus2:{
+                // The Set of macros that will be played when we hit the play button. Spheros will follow the
+                // set of macros until the very end.
+                MacroObject macro = new MacroObject();
+
+                //CHORUS PART2:
+                //don't stop us now
+                // Shake
+                macro.addCommand( new LoopStart(10));
+                macro.addCommand( new RotateOverTime( 1080, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                //Move the robot to the back
+                macro.addCommand( new Roll( 0.5f, 180, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500 ) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 90, 255 ) );
+                //Move the robot to the right
+                macro.addCommand( new Roll( 0.5f, 90, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 90, 255 ) );
+                //don't stop us now II
+                macro.addCommand( new LoopStart( 30));
+                macro.addCommand( new RotateOverTime( 540, 800));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                //Set the robot to roll left
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                macro.addCommand( new Delay ((500)));
+                //trumpets
+                macro.addCommand(new LoopStart(4));
+                //Move the robot to the left
+                macro.addCommand( new Roll( 0.8f, 270, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay((500) ) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                macro.addCommand( new Delay( ( 500 ) ) );
+                //shake
+                macro.addCommand( new LoopStart(5));
+                macro.addCommand( new RotateOverTime( 1080, 500));
+                macro.addCommand( new Delay( (500) ) );
+                macro.addCommand ( new LoopEnd());
+                macro.addCommand(new Delay(( 500)));
+                macro.addCommand( new LoopEnd());
+
+                //Move the robot to the left
+                macro.addCommand( new Roll( 0.8f, 90, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay((500) ) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 90, 255 ) );
+                macro.addCommand( new Delay( ( 500 ) ) );
+
+                //Send the macro to the robot and play
+                macro.setMode(MacroObject.MacroObjectMode.Normal);
+                macro.setRobot(mRobot.getRobot());
+                macro.playMacro();
+                break;
+            }
+
+            case R.id.buttonEnding:{
+                // The Set of macros that will be played when we hit the play button. Spheros will follow the
+                // set of macros until the very end.
+                MacroObject macro = new MacroObject();
+
+                //END PART1:
+                //another spin ccw
+                macro.addCommand( new LoopStart( 3));
+                macro.addCommand( new RotateOverTime( 720, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+
+                macro.addCommand( new LoopStart( 12));
+                macro.addCommand( new RotateOverTime( 540, 800));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                //Set the robot to roll left
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+
+                macro.addCommand( new LoopStart( 12 ));
+                macro.addCommand( new RotateOverTime( 720, 800));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                //Set the robot to roll left
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+
+                //yes we were born to make history
+                // Shake
+                macro.addCommand( new LoopStart(10));
+                macro.addCommand( new RotateOverTime( 1080, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                macro.addCommand(new Roll( 1.5f, 0, 0 ));
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 0, 255 ) );
+                macro.addCommand( new Delay( ( 500  ) ) );
+
+
+                //don't stop us now
+                // Shake
+                macro.addCommand( new LoopStart(10));
+                macro.addCommand( new RotateOverTime( 1080, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                //Move the robot to the back
+                macro.addCommand( new Roll( 0.5f, 180, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500 ) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 90, 255 ) );
+                //Move the robot to the right
+                macro.addCommand( new Roll( 0.5f, 90, 0 ) );
+                //Wait until the robot should stop moving
+                macro.addCommand( new Delay( 500) );
+                //Stop
+                macro.addCommand( new Roll( 0.0f, 90, 255 ) );
+
+                //Send the macro to the robot and play
+                macro.setMode(MacroObject.MacroObjectMode.Normal);
+                macro.setRobot(mRobot.getRobot());
+                macro.playMacro();
+                break;
+            }
+
+            case R.id.buttonEnding2:{
+                // The Set of macros that will be played when we hit the play button. Spheros will follow the
+                // set of macros until the very end.
+                MacroObject macro = new MacroObject();
+
+                //END PART2:
+
+                //don't stop us now II
+                macro.addCommand( new LoopStart( 30));
+                macro.addCommand( new RotateOverTime( 540, 800));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+                //Set the robot to roll left
+                macro.addCommand( new Roll( 0.0f, 270, 255 ) );
+                macro.addCommand( new Delay ((500)));
+                //another spin ccw
+                macro.addCommand( new LoopStart( 8));
+                macro.addCommand( new RotateOverTime( 360, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+
+                //another spin ccw
+                macro.addCommand( new LoopStart( 8));
+                macro.addCommand( new RotateOverTime( 720, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
+
+                //another spin ccw
+                macro.addCommand( new LoopStart( 10));
+                macro.addCommand( new RotateOverTime( 1080, 500));
+                macro.addCommand( new Delay( ( 500  ) ) );
+                macro.addCommand( new LoopEnd() );
                 macro.addCommand( new Delay( ( 500 ) ) );
 
                 //Send the macro to the robot and play

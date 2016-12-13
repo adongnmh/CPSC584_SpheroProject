@@ -167,8 +167,7 @@ namespace AForgeCameraTracking
 
                     if (shapeChecker.IsCircle(edgePoints, out center, out radius))
                     {
-                        //Console.WriteLine(blobs.Length);
-                        //Console.WriteLine(blobs[i].Rectangle.Location);
+
 
                         Console.WriteLine("Sphero Size is:");
                         Console.WriteLine("Sphero Width is:" + blobs[i].Rectangle.Width);
