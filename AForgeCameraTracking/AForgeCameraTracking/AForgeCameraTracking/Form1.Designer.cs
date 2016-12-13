@@ -35,7 +35,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.buttonEdgeDetect = new System.Windows.Forms.Button();
             this.btnMotion = new System.Windows.Forms.Button();
-            this.textBoxMotion = new System.Windows.Forms.TextBox();
+            this.textBoxMotionX = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -117,19 +117,19 @@
             this.btnMotion.UseVisualStyleBackColor = true;
             this.btnMotion.Click += new System.EventHandler(this.btnMotion_Click);
             // 
-            // textBoxMotion
+            // textBoxMotionX
             // 
-            this.textBoxMotion.Location = new System.Drawing.Point(595, 528);
-            this.textBoxMotion.Name = "textBoxMotion";
-            this.textBoxMotion.Size = new System.Drawing.Size(401, 20);
-            this.textBoxMotion.TabIndex = 16;
+            this.textBoxMotionX.Location = new System.Drawing.Point(574, 523);
+            this.textBoxMotionX.Name = "textBoxMotionX";
+            this.textBoxMotionX.Size = new System.Drawing.Size(499, 20);
+            this.textBoxMotionX.TabIndex = 16;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1123, 721);
-            this.Controls.Add(this.textBoxMotion);
+            this.Controls.Add(this.textBoxMotionX);
             this.Controls.Add(this.btnMotion);
             this.Controls.Add(this.buttonEdgeDetect);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -156,7 +156,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button buttonEdgeDetect;
         private System.Windows.Forms.Button btnMotion;
-        private System.Windows.Forms.TextBox textBoxMotion;
+        private System.Windows.Forms.TextBox textBoxMotionX;
     }
 }
 

@@ -40,6 +40,8 @@ namespace AForgeCameraTracking
             new SimpleBackgroundModelingDetector(),
             new MotionAreaHighlighting());
 
+        private String processValue;
+
         private List<float> motionHistory = new List<float>();
 
         
@@ -127,23 +129,23 @@ namespace AForgeCameraTracking
                 EuclideanColorFiltering filter = new EuclideanColorFiltering();
                 // set center colol and radius
                 filter.CenterColor = new RGB(255, 255, 255);
-                filter.Radius = 125;
+                filter.Radius = 150;
                 filter.ApplyInPlace(video2);
 
+                // create filter
+                BlobsFiltering bFilter = new BlobsFiltering();
+                // configure filter
+                bFilter.CoupledSizeFiltering = true;
+                bFilter.MinWidth = 10;
+                bFilter.MinHeight = 10;
+                // apply the filter
+                bFilter.ApplyInPlace(video2);
 
-
-                //ColorFiltering colorFilter = new ColorFiltering();
-                //colorFilter.Red = new IntRange(0, 0);
-                //colorFilter.Green = new IntRange(0, 0);
-                //colorFilter.Blue = new IntRange(0, 0);
-                //colorFilter.FillOutsideRange = false;
-                //colorFilter.ApplyInPlace(video2);
 
                 BlobCounter blobCounter = new BlobCounter();
-
                 blobCounter.FilterBlobs = true;
-                blobCounter.MinHeight = 15;
-                blobCounter.MinWidth = 15;
+                blobCounter.MinHeight = 10;
+                blobCounter.MinWidth = 10;
                 blobCounter.ObjectsOrder = ObjectsOrder.Size;
 
                 blobCounter.ProcessImage(video2);
@@ -165,9 +167,18 @@ namespace AForgeCameraTracking
 
                     if (shapeChecker.IsCircle(edgePoints, out center, out radius))
                     {
-                        
-                        //Console.WriteLine(center.X);
-                        //Console.WriteLine(center.Y);
+                        //Console.WriteLine(blobs.Length);
+                        //Console.WriteLine(blobs[i].Rectangle.Location);
+
+                        Console.WriteLine("Sphero Size is:");
+                        Console.WriteLine("Sphero Width is:" + blobs[i].Rectangle.Width);
+                        Console.WriteLine("Sphero Height is:" +blobs[i].Rectangle.Height);
+
+
+                        //Printing the Sphero Coordinates here:
+                        Console.WriteLine("Sphero Coordinates Are:");
+                        Console.WriteLine(center.X);
+                        Console.WriteLine(center.Y);
                         g.DrawEllipse(yellowPen,
                             (int)(center.X - radius),
                             (int)(center.Y - radius),
@@ -183,26 +194,27 @@ namespace AForgeCameraTracking
 
             else if(trackingMode == 3)
             {
-
-
-                // Setting the detection algorithm to SimpleBAckgroundModelling
-                // SetMotionDetectionAlgorithm(new SimpleBackgroundModelingDetector(true, true));
-                //
-                // SetMotionProcessingAlgorithm(new MotionBorderHighlighting());
-
-                Graphics g = Graphics.FromImage(video2);
-
-
-                //float value = detector.ProcessFrame(video2);
-                //String valueString = value.ToString();
                 detector.ProcessFrame(video2);
                 detector.MotionDetectionAlgorithm = new SimpleBackgroundModelingDetector(true, true);
                 detector.MotionProcessingAlgorithm = new MotionBorderHighlighting();
 
-                if (detector.ProcessFrame(video2) > 0.01)
+
+                BlobCounter blobCounter = new BlobCounter();
+                blobCounter.MinHeight = 5;
+                blobCounter.MinWidth = 5;
+                blobCounter.ObjectsOrder = ObjectsOrder.Size;
+
+                blobCounter.ProcessImage(video2);
+                Blob[] blobs = blobCounter.GetObjectsInformation();
+
+                for (int i = 0, n = blobs.Length; i < n; i++)
                 {
-                    Console.WriteLine("WORKS!?");
+                    Console.WriteLine(blobs.Length);
+                    Console.WriteLine(blobs[i].Rectangle.Location);
                 }
+
+
+                processValue = detector.ProcessFrame(video2).ToString();
                 pictureBox2.Image = video2;
             }
 
@@ -252,6 +264,7 @@ namespace AForgeCameraTracking
         private void btnMotion_Click(object sender, EventArgs e)
         {
             trackingMode = 3;
+            textBoxMotionX.Text = processValue;
         }
 
         private void buttonTracking_Click(object sender, EventArgs e)
