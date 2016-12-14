@@ -20,3 +20,4 @@ C:\Git\CPSC584\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\ob
 C:\Git\CPSC584\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\obj\Debug\AForgeCameraTracking.csproj.GenerateResource.Cache
 C:\Git\CPSC584\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\obj\Debug\AForgeCameraTracking.exe
 C:\Git\CPSC584\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\obj\Debug\AForgeCameraTracking.pdb
+C:\Git\CPSC584\AForgeCameraTracking\AForgeCameraTracking\AForgeCameraTracking\obj\Debug\AForgeCameraTracking.csprojResolveAssemblyReference.cache
